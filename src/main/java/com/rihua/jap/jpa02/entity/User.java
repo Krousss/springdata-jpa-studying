@@ -1,7 +1,7 @@
 package com.rihua.jap.jpa02.entity;
 
 import javax.persistence.*;
-
+//从表
 @Entity
 @Table(name="user")
 public class User {
@@ -19,6 +19,9 @@ public class User {
 
     @Column(name="address")
     private String address;
+    @ManyToOne(targetEntity = Company.class)
+    @JoinColumn(name = "lk_company_id",referencedColumnName = "company_id")
+    private Company company;
 
 
     public Integer getId() {
@@ -53,14 +56,22 @@ public class User {
         this.address = address;
     }
 
+    public Company getCompany() {
+        return company;
+    }
+
+    public void setCompany(Company company) {
+        this.company = company;
+    }
+
     @Override
     public String toString() {
-        final StringBuffer sb = new StringBuffer("Users{");
-        sb.append("id=").append(id);
-        sb.append(", name='").append(name).append('\'');
-        sb.append(", age=").append(age);
-        sb.append(", address='").append(address).append('\'');
-        sb.append('}');
-        return sb.toString();
+        return "User{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", age=" + age +
+                ", address='" + address + '\'' +
+                ", company=" + company +
+                '}';
     }
 }

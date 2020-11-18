@@ -116,6 +116,4 @@ class Jpa02ApplicationTests {
         };
         System.out.println(userDao.findAll(specification));
     }
-
-
 }
